@@ -1,0 +1,3 @@
+get_albums_by_images_count:
+    path:     /albums/count_images/{amount}
+    defaults: { _controller: AppBundle:Album:getByImagesCount }

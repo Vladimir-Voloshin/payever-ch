@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\BaseEntity;
+use Doctrine\ORM\Mapping as ORM;
 /**
  * Image
  */
@@ -70,9 +71,9 @@ class Image extends BaseEntity
     /**
      * Get album
      *
-     * @return Album
+     * @return \AppBundle\Entity\Album
      */
-    public function getImage()
+    public function getAlbum()
     {
         return $this->album;
     }
@@ -83,7 +84,7 @@ class Image extends BaseEntity
      * @param \AppBundle\Entity\Album $album
      * @return Image
      */
-    public function setImage(Album $album = null)
+    public function setAlbum(\AppBundle\Entity\Album $album = null)
     {
         $this->album = $album;
 

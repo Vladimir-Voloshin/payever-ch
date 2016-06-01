@@ -18,6 +18,10 @@ AppBundle\Entity\Album:
         updated:
             type: datetime
             nullable: true
+    oneToMany:
+        images:
+            targetEntity: AppBundle\Entity\Image
+            mappedBy: album
     lifecycleCallbacks:
             prePersist: [setCreatedValue]
             preUpdate:  [setUpdatedValue]

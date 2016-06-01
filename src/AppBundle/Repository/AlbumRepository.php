@@ -10,4 +10,15 @@ namespace AppBundle\Repository;
  */
 class AlbumRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function getByImagesCount($amount){
+		$query = $this->createQueryBuilder('a');
+		$query->select('a, COUNT(i) as c');
+		$query->innerJoin('a.images', 'i');
+		$query->groupBy('a');
+		$query->having('c < :amount');
+		$query->setParameter('amount', $amount);
+		$result = $query->getQuery()->getResult();
+		var_dump($result);die();
+		return $result;
+	}
 }

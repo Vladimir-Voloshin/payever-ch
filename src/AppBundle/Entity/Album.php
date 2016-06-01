@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\BaseEntity;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Album
  */
@@ -27,8 +29,17 @@ class Album extends BaseEntity
      * @var \DateTime
      */
     private $updated;
+    
+    /**
+     * @var Image[]|\Doctrine\Common\Collections\ArrayCollection
+     */
+    private $images;
 
-
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -63,6 +74,49 @@ class Album extends BaseEntity
         return $this->albumName;
     }
 
+
+    /**
+     * @return ArrayCollection|Image[]
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * @param ArrayCollection|Image[] $images
+     * @return Album
+     */
+    public function setImages($images)
+    {
+        $this->images = $images;
+
+        return $this;
+    }
+
+    /**
+     * Add image
+     *
+     * @param \AppBundle\Entity\Image $image
+     * @return Album
+     */
+    public function addImage(\AppBundle\Entity\Image $image)
+    {
+        $this->images[] = $image;
+
+        return $this;
+    }
+
+    /**
+     * Remove image
+     *
+     * @param \AppBundle\Entity\Image $image
+     */
+    public function removeImage(\AppBundle\Entity\Image $image)
+    {
+        $this->images->removeElement($image);
+    }
+    
     /**
      * Set created
      *

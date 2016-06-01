@@ -12,7 +12,6 @@ AppBundle\Entity\Image:
         imageName:
             type: string
             length: 255
-            unique: true
             column: image_name
         created:
             type: datetime
@@ -20,12 +19,13 @@ AppBundle\Entity\Image:
             type: datetime
             nullable: true
     manyToOne:
-            album:
-                targetEntity: AppBundle\Entity\Album
-                joinColumn:
-                    name: album_id
-                    referencedColumnName: id
-                    nullable: true
+        album:
+            targetEntity: AppBundle\Entity\Album
+            inversedBy: images
+            fetch: LAZY
+            joinColumn:
+                name: album_id
+                referencedColumnName: id
     lifecycleCallbacks:
                 prePersist: [setCreatedValue]
                 preUpdate:  [setUpdatedValue]
