@@ -18,7 +18,7 @@ class Version20160601152045 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $imagesPerAlbum = 5;
         for($i = 1; $i <= 5; $i++){
-            $this->addSql(sprintf("INSERT INTO `%s` (`id`, `album_name`, `created`) VALUES ('%s', '%d', '%s')", 'albums', $i, 'album'.$i, date('Y-m-d G:i:s', time())));
+            $this->addSql(sprintf("INSERT INTO `%s` (`id`, `album_name`, `created`) VALUES ('%d', '%s', '%s')", 'albums', $i, 'album'.$i, date('Y-m-d G:i:s', time())));
             
             for($j = 1; $j <= $imagesPerAlbum; $j++){
                 $this->addSql(sprintf("INSERT INTO `%s` (`image_name`, `album_id`, `created`) VALUES ('%s', '%s', '%s')", 
@@ -40,7 +40,7 @@ class Version20160601152045 extends AbstractMigration
     public function down(Schema $schema)
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('DELETE FROM `albums` WHERE 1');
         $this->addSql('DELETE FROM `images` WHERE 1');
+        $this->addSql('DELETE FROM `albums` WHERE 1');
     }
 }

@@ -24,9 +24,10 @@ class AlbumController extends Controller
      */
     public function getByImagesCountAction($amount, Request $request)
     {
+//        var_dump(__LINE__);die();
         /** @var \AppBundle\Repository\AlbumRepository $albumRepository */
         $albumRepository = $this->getDoctrine()->getRepository('AppBundle:Album');
-        $items = $albumRepository->getByImagesCount($amount);
+        $items = $albumRepository->find(1);
         var_dump($items);die();
         return new JsonResponse(array(
             'items' => $items
