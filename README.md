@@ -1,68 +1,67 @@
-Symfony Standard Edition
-========================
+Task description
+=================
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
+Setup SF2.8 project
+ - Test task is Image gallery with simple structure - Album -> Images
+ - Albums and images can be loaded from fixtures. Create/edit parts for album and images are NOT required, but welcome
+ - Users functionality is NOT needed
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+We expect:
+5 albums to be loaded
+First album should contain 5 images
+Every other album should contain 20+ images
 
-What's inside?
---------------
+Ajax GET albums with max 10 images for albums list - we test good skills in SQL
 
-The Symfony Standard Edition is configured with the following defaults:
+Ajax GET images when looking on Album in details
+Images list should contain maximum 10 images
+If album has more than 10 images - pagination should be visible, clicking on the page - images list should be changed. 
+We expect usage of knp paginator bundle and  serializer
 
-  * An AppBundle you can use to start coding;
+The site should be realized in single-page way, driven by Marionette.js with following routes:
 
-  * Twig as the only configured template engine;
+‘’ : albums list
+‘/album/:id’ : images list for album with id specified, page 1
+‘/album/:id/page/:page’ : images list for album with id specified, page :page
 
-  * Doctrine ORM/DBAL;
+We expect to see usage of Application, Router, Controller, LayoutVew, CollectionView and ItemView
 
-  * Swiftmailer;
+Each route should be accessible when opening the page having url, means when we open the url in a separate tab - correct content must be loaded
 
-  * Annotations enabled for everything.
+Pages should have a design. Design quality doesn’t matter, we test CSS skills. Any modern decorations are welcome.
 
-It comes pre-configured with the following bundles:
+Store your code in github/bitbucket!
+Exclude vendors folder from git project, we will install dependencies using composer.lock
 
-  * **FrameworkBundle** - The core Symfony framework bundle
+We don’t need your gallery, that is just a test task. If you have samples of your code in github or participation  in other opensource projects - please share a link to github code.
 
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
 
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
+**Requirements for PHP code:** <br />
+conform http://symfony.com/doc/current/contributing/code/standards.html
+we expect definitive variable names, doc-comments
+we expect thin controllers, the business logic must be placed in separate managers, not controllers.
+also we test where and what do u write. 
+provide phpunit tests, we expect usage of mock objects.
 
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
+Please don’t be lazy and make easy-to-understand structure, well separated.
+We don’t limit you by time. Provide a well coded project, that’s only thing we require as a result. Please ensure that the code likes at least for you, don’t waste your time otherwise.
 
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
 
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
+**Requirements for javascript:** <br />
+has to be written on coffeescript<br />
 
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
+**Requirements for css:** <br />
+none, but we suggest to write on scss (compass)<br />
 
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
+We test skills
+----------------
 
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
+Services self-written, DI
+Repository usage, understanding the difference between controllers and other services
+Data structure, hierarchy, code optimizations
+Git knowledge
+Understanding mysql
+Javascript, jquery, coffee, backbone/marionette skills, understanding ajax
+CSS/SCSS skills
 
-  * [**SensioGeneratorBundle**][13] (in dev/test env) - Adds code generation
-    capabilities
-
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
-
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
-
-Enjoy!
-
-[1]:  https://symfony.com/doc/2.8/book/installation.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/2.8/book/doctrine.html
-[8]:  https://symfony.com/doc/2.8/book/templating.html
-[9]:  https://symfony.com/doc/2.8/book/security.html
-[10]: https://symfony.com/doc/2.8/cookbook/email.html
-[11]: https://symfony.com/doc/2.8/cookbook/logging/monolog.html
-[13]: https://symfony.com/doc/2.8/bundles/SensioGeneratorBundle/index.html
+*Please write your code in the way allowing us to test your skills in areas listed.*
