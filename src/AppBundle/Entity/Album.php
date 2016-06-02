@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Album extends BaseEntity
 {
+    const MAX_IMAGES_PER_PAGE = 10;
     /**
      * @var int
      */
@@ -164,7 +165,12 @@ class Album extends BaseEntity
     {
         return $this->updated;
     }
-    
-    
+
+    public function toJson(){
+        return array(
+            'id' => $this->id,
+            'albumName' => $this->albumName
+        );
+    }
 }
 

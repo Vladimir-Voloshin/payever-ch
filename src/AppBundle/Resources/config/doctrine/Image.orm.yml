@@ -22,7 +22,6 @@ AppBundle\Entity\Image:
         album:
             targetEntity: AppBundle\Entity\Album
             inversedBy: images
-            fetch: LAZY
             joinColumn:
                 name: album_id
                 referencedColumnName: id

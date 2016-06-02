@@ -10,4 +10,10 @@ namespace AppBundle\Repository;
  */
 class ImageRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function getAlbumImagesQuery($albumId){
+		$query = $this->createQueryBuilder('i');
+		$query->where('i.album = :album');
+		$query->setParameter('album', $albumId);
+		return $query->getQuery();
+	}
 }

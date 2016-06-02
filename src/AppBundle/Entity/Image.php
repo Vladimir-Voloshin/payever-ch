@@ -138,5 +138,12 @@ class Image extends BaseEntity
     {
         return $this->updated;
     }
+
+    public function toJson(){
+        return array(
+            'id' => $this->id,
+            'fileName' => $this->imageName
+        );
+    }
 }
 
