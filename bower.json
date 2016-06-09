@@ -1,0 +1,17 @@
+{
+  "name": "symfony-application",
+  "dependencies": {
+    "backbone.marionette": "marionette#^2.4.7"
+  },
+  "homepage": "https://github.com/Vladimir-Voloshin/payever-ch",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
