@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace Payever\TestBundle\Entity;
 
 use AppBundle\Entity\BaseEntity;
 use Doctrine\ORM\Mapping as ORM;
@@ -30,7 +30,7 @@ class Image extends BaseEntity
     private $updated;
 
     /**
-     * @var \AppBundle\Entity\Album
+     * @var \Payever\TestBundle\Entity\Album
      */
     private $album;
 
@@ -71,7 +71,7 @@ class Image extends BaseEntity
     /**
      * Get album
      *
-     * @return \AppBundle\Entity\Album
+     * @return \Payever\TestBundle\Entity\Album
      */
     public function getAlbum()
     {
@@ -81,10 +81,10 @@ class Image extends BaseEntity
     /**
      * Set album
      *
-     * @param \AppBundle\Entity\Album $album
+     * @param \Payever\TestBundle\Entity\Album $album
      * @return Image
      */
-    public function setAlbum(\AppBundle\Entity\Album $album = null)
+    public function setAlbum(\Payever\TestBundle\Entity\Album $album = null)
     {
         $this->album = $album;
 

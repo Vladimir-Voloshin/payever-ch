@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace Payever\TestBundle\Entity;
 
 use AppBundle\Entity\BaseEntity;
 use Doctrine\ORM\Mapping as ORM;
@@ -98,10 +98,10 @@ class Album extends BaseEntity
     /**
      * Add image
      *
-     * @param \AppBundle\Entity\Image $image
+     * @param \Payever\TestBundle\Entity\Image $image
      * @return Album
      */
-    public function addImage(\AppBundle\Entity\Image $image)
+    public function addImage(\Payever\TestBundle\Entity\Image $image)
     {
         $this->images[] = $image;
 
@@ -111,9 +111,9 @@ class Album extends BaseEntity
     /**
      * Remove image
      *
-     * @param \AppBundle\Entity\Image $image
+     * @param \Payever\TestBundle\Entity\Image $image
      */
-    public function removeImage(\AppBundle\Entity\Image $image)
+    public function removeImage(\Payever\TestBundle\Entity\Image $image)
     {
         $this->images->removeElement($image);
     }

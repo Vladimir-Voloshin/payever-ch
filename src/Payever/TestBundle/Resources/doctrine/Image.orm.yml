@@ -1,7 +1,7 @@
-AppBundle\Entity\Image:
+Payever\TestBundle\Entity\Image:
     type: entity
     table: images
-    repositoryClass: AppBundle\Repository\ImageRepository
+    repositoryClass: Payever\TestBundle\Repository\ImageRepository
     id:
         id:
             type: integer
@@ -20,7 +20,7 @@ AppBundle\Entity\Image:
             nullable: true
     manyToOne:
         album:
-            targetEntity: AppBundle\Entity\Album
+            targetEntity: Payever\TestBundle\Entity\Album
             inversedBy: images
             joinColumn:
                 name: album_id

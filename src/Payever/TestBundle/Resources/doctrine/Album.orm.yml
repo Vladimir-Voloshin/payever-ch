@@ -1,7 +1,7 @@
-AppBundle\Entity\Album:
+Payever\TestBundle\Entity\Album:
     type: entity
     table: albums
-    repositoryClass: AppBundle\Repository\AlbumRepository
+    repositoryClass: Payever\TestBundle\Repository\AlbumRepository
     id:
         id:
             type: integer
@@ -20,7 +20,7 @@ AppBundle\Entity\Album:
             nullable: true
     oneToMany:
         images:
-            targetEntity: AppBundle\Entity\Image
+            targetEntity: Payever\TestBundle\Entity\Image
             mappedBy: album
     lifecycleCallbacks:
             prePersist: [setCreatedValue]

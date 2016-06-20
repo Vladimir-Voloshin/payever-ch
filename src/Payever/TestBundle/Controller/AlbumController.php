@@ -1,9 +1,9 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace Payever\TestBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use AppBundle\Entity\Album as Album;
+use Payever\TestBundle\Entity\Album as Album;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -16,7 +16,7 @@ class AlbumController extends Controller
     public function indexAction(Request $request)
     {
         // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', array(
+        return $this->render('PayeverTestBundle:Default:index.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
         ));
     }
@@ -44,8 +44,8 @@ class AlbumController extends Controller
      */
     public function getAlbumImagesAction($albumId, $page = 1)
     {
-        /** @var \AppBundle\Repository\ImageRepository $imageRepository */
-        $imageRepository = $this->getDoctrine()->getRepository('AppBundle:Image');
+        /** @var \Payever\TestBundle\Repository\ImageRepository $imageRepository */
+        $imageRepository = $this->getDoctrine()->getRepository('TestBundle:Image');
         $query = $imageRepository->getAlbumImagesQuery($albumId, $page);
 
         /** @var \Knp\Component\Pager\Paginator $paginator */
