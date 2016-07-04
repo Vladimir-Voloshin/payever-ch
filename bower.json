@@ -1,0 +1,24 @@
+{
+  "name": "payever-ch",
+  "description": "Payever test task",
+  "main": "vendor.js",
+  "authors": [
+    "Vladymyr Voloshyn"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "test"
+  ],
+  "homepage": "https://github.com/Vladimir-Voloshin/payever-ch",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.0.0",
+    "bootstrap": "^3.3.6"
+  }
+}
