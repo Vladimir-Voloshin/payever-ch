@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'PayeverTestBundle::base.html.twig' %}
 
 {% block body %}
     <div id="wrapper">
@@ -6,7 +6,6 @@
             <div id="welcome">
                 <h1><span>Welcome to</span> Payever test</h1>
             </div>
-
         </div>
     </div>
 {% endblock %}
@@ -16,7 +15,5 @@
 {% endblock %}
 
 {% block javascripts %}
-    {% javascripts '@vendors' %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+    {{ parent() }}
 {% endblock %}

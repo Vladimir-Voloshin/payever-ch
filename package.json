@@ -4,6 +4,8 @@
   "description": "Payever test task",
   "main": "vendor.js",
   "scripts": {
+    "build": "coffee --compile web_src/coffee && mv web_src/coffee/*.js web_src/js/ && gulp",
+    "gulp": "gulp",
     "test": "test-vendor"
   },
   "repository": {
@@ -22,10 +24,11 @@
   "devDependencies": {},
   "dependencies": {
     "backbone.marionette": "^2.4.7",
-    "bootstrap": "^3.3.6",
+    "coffee-script": "^1.10.0",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.0",
+    "gulp-if": "^2.0.1",
     "gulp-less": "^3.1.0",
     "gulp-order": "^1.1.1",
     "gulp-uglify": "^1.5.4",
