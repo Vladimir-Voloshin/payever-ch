@@ -4,9 +4,10 @@
   "description": "Payever test task",
   "main": "vendor.js",
   "scripts": {
-    "build": "coffee --compile web_src/coffee && mv web_src/coffee/*.js web_src/js/ && gulp",
-    "gulp": "gulp",
-    "test": "test-vendor"
+    "build":   "coffee --compile web_src/coffee && mv web_src/coffee/*.js web_src/js/",
+    "require": "browserify web_src/test/br_main.js -o web_src/test/br_app.js",
+    "gulp":    "gulp",
+    "test":    "test-vendor"
   },
   "repository": {
     "type": "git",
@@ -27,16 +28,11 @@
     "backbone.babysitter": "^0.1.12",
     "backbone.marionette": "^2.4.7",
     "backbone.wreqr": "^1.3.7",
+    "bootstrap": "^3.3.6",
+    "browserify": "^13.0.1",
     "coffee-script": "^1.10.0",
-    "gulp": "^3.9.1",
-    "gulp-clean": "^0.3.2",
-    "gulp-concat": "^2.6.0",
-    "gulp-if": "^2.0.1",
-    "gulp-less": "^3.1.0",
-    "gulp-order": "^1.1.1",
-    "gulp-uglify": "^1.5.4",
+    "jquery": "^2.2.4",
     "less": "^2.7.1",
-    "underscore-template-loader": "^0.7.3",
-    "webpack": "^1.13.1"
+    "underscore-template-loader": "^0.7.3"
   }
 }
