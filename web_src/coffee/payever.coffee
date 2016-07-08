@@ -1,9 +1,8 @@
-###
-app = new Mn.Application
+$ = require("jquery");
+Backbone = require("backbone");
+Bs = require("backbone.babysitter");
+Mn = require("backbone.marionette");
+_ = require("underscore");
 
-app.on("start") -> 
-  Backbone.history.start
-  alert "started"
-app.start
+app = new Backbone.Marionette.Application
 
-###

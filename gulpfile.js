@@ -19,15 +19,15 @@ var env = process.env.GULP_ENV;
         return process.env.NODE_ENV = 'production';
     });
     
-gulp.task('default', ['clean'], function () {
-    var tasks = ['images', 'fonts', 'less', 'customjs', 'vendorjs', 'set-dev-node-env'];
+gulp.task('default', ['set-dev-node-env'], function () {
+    var tasks = ['images', 'fonts', 'less'];
     tasks.forEach(function (val) {
         gulp.start(val);
     });
 });
 
 gulp.task('clean', function () {
-    return gulp.src(['web/css/*', 'web/js/*', 'web/images/*', 'web/fonts/*'])
+    return gulp.src(['web/css/*', 'web/images/*', 'web/fonts/*'])
         .pipe(clean());
 });
 
@@ -47,27 +47,6 @@ gulp.task('less', function() {
     return gulp.src(['web-src/less/*.less'])
         .pipe(less({compress: true}))
         .pipe(gulp.dest('web/css/'));
-});
-
-//JAVASCRIPT TASK: write one minified js file out of jquery.js, bootstrap.js files
-gulp.task('vendorjs', function () {
-    return gulp.src([
-            'bower_components/jquery/dist/jquery.js',
-            'bower_components/bootstrap/dist/js/bootstrap.js'
-        ])
-        .pipe(concat('vendors.js'))
-        .pipe(gulpif(env === 'prod', uglify()))
-        // .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('web/js'));
-});
-
-//JAVASCRIPT TASK: write one minified js file out of custom js files
-gulp.task('customjs', function () {
-    return gulp.src(['web_src/js/**/*.js'])
-        .pipe(concat('main.js'))
-        .pipe(gulpif(env === 'prod', uglify()))
-        // .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('web/js'));
 });
 
 gulp.task('watch', function () {

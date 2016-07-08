@@ -4,8 +4,11 @@
   "description": "Payever test task",
   "main": "vendor.js",
   "scripts": {
-    "build":   "coffee --compile web_src/coffee && mv web_src/coffee/*.js web_src/js/",
-    "require": "browserify web_src/test/br_main.js -o web_src/test/br_app.js",
+    "build":   "npm run compile && npm run move && npm run require && gulp",
+    "compile": "coffee --compile web_src/coffee",
+    "cf":      "npm run compile && npm run move && npm run require",
+    "move":    "mv web_src/coffee/*.js web_src/js/",
+    "require": "browserify ./web_src/js/payever.js -o ./web/js/main.js",
     "gulp":    "gulp",
     "test":    "test-vendor"
   },
@@ -32,6 +35,13 @@
     "browserify": "^13.0.1",
     "coffee-script": "^1.10.0",
     "jquery": "^2.2.4",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-if": "^2.0.1",
+    "gulp-less": "^3.1.0",
+    "gulp-order": "^1.1.1",
+    "gulp-uglify": "^1.5.4",
     "less": "^2.7.1",
     "underscore-template-loader": "^0.7.3"
   }
