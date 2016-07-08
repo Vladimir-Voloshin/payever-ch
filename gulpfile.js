@@ -3,7 +3,6 @@
  */
 
 var clean  = require('gulp-clean'),
-    // coffee = require('gulp-coffee'),
     concat = require('gulp-concat'),
     gulp   = require('gulp'),
     gulpif = require('gulp-if'),
@@ -52,8 +51,10 @@ gulp.task('less', function() {
 
 //JAVASCRIPT TASK: write one minified js file out of jquery.js, bootstrap.js files
 gulp.task('vendorjs', function () {
-    return gulp.src(['bower_components/jquery/dist/jquery.js',
-        'bower_components/bootstrap/dist/js/bootstrap.js'])
+    return gulp.src([
+            'bower_components/jquery/dist/jquery.js',
+            'bower_components/bootstrap/dist/js/bootstrap.js'
+        ])
         .pipe(concat('vendors.js'))
         .pipe(gulpif(env === 'prod', uglify()))
         // .pipe(sourcemaps.write('./'))

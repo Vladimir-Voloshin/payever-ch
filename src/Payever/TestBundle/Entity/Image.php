@@ -142,7 +142,7 @@ class Image extends BaseEntity
     public function toJson(){
         return array(
             'id' => $this->id,
-            'fileName' => $this->imageName
+            'fileName' => $this->imageName,
         );
     }
 }

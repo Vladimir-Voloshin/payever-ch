@@ -169,7 +169,7 @@ class Album extends BaseEntity
     public function toJson(){
         return array(
             'id' => $this->id,
-            'albumName' => $this->albumName
+            'albumName' => $this->albumName,
         );
     }
 }

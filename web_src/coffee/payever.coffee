@@ -1,17 +1,9 @@
-song = ["do", "re", "mi", "fa", "so"]
+###
+app = new Mn.Application
 
-singers = {Jagger: "Rock", Elvis: "Roll"}
+app.on("start") -> 
+  Backbone.history.start
+  alert "started"
+app.start
 
-bitlist = [
-  1, 0, 1
-  0, 0, 1
-  1, 1, 0
-]
-
-kids =
-  brother:
-    name: "Max"
-    age:  11
-  sister:
-    name: "Ida"
-    age:  9
+###
