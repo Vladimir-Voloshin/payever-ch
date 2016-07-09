@@ -2,7 +2,7 @@
 
 namespace Payever\TestBundle\Entity;
 
-use AppBundle\Entity\BaseEntity;
+use Payever\TestBundle\Entity\BaseEntity;
 use Doctrine\ORM\Mapping as ORM;
 /**
  * Image

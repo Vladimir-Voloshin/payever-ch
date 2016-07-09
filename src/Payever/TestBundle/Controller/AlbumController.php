@@ -27,7 +27,7 @@ class AlbumController extends Controller
     public function getByImagesCountAction($amount)
     {
         /** @var \Payever\TestBundle\Repository\AlbumRepository $albumRepository */
-        $albumRepository = $this->getDoctrine()->getRepository('AppBundle:Album');
+        $albumRepository = $this->getDoctrine()->getRepository('PayeverTestBundle:Album');
         $items = $albumRepository->getByImagesCount($amount);
         
         foreach ($items as $item) {
@@ -45,7 +45,7 @@ class AlbumController extends Controller
     public function getAlbumImagesAction($albumId, $page = 1)
     {
         /** @var \Payever\TestBundle\Repository\ImageRepository $imageRepository */
-        $imageRepository = $this->getDoctrine()->getRepository('TestBundle:Image');
+        $imageRepository = $this->getDoctrine()->getRepository('PayeverTestBundle:Image');
         $query = $imageRepository->getAlbumImagesQuery($albumId, $page);
 
         /** @var \Knp\Component\Pager\Paginator $paginator */
