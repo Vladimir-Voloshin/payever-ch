@@ -18,6 +18,9 @@ class AlbumRepository extends \Doctrine\ORM\EntityRepository
 		$query->having('c > :amount');
 		$query->setParameter('amount', $amount);
 		$result = $query->getQuery()->getResult();
-		return $result;
+		foreach ($result as $item) {
+			$items[] = $item["album"]->toJson();
+		}
+		return $items;
 	}
 }
