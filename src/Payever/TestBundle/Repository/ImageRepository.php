@@ -15,7 +15,7 @@ class ImageRepository extends \Doctrine\ORM\EntityRepository
 		$query = $this->createQueryBuilder('i');
 		$query->where('i.album = :album');
 		$query->setParameter('album', $albumId);
-		
+
 		/** @var \Knp\Component\Pager\Paginator $paginator */
 		$pagination = $paginator->paginate(
 			$query->getQuery(),

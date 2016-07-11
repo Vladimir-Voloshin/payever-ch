@@ -21,8 +21,11 @@ class AlbumController extends Controller
     /**
      * @Route("/albums/count_images/{amount}", name="get_albums_by_images_count")
      */
-    public function getByImagesCountAction($amount)
+    public function getByImagesCountAction(Request $request, $amount)
     {
+//        if(!$request->isXmlHttpRequest()){
+//            
+//        }
         /** @var \Payever\TestBundle\Repository\AlbumRepository $albumRepository */
         $albumRepository = $this->getDoctrine()->getRepository('PayeverTestBundle:Album');
         
@@ -34,7 +37,7 @@ class AlbumController extends Controller
     /**
      * @Route("/albums/show/{albumId}/{page}", name="get_album_images")
      */
-    public function getAlbumImagesAction($albumId, $page = 1)
+    public function getAlbumImagesAction(Request $request, $albumId, $page = 1)
     {
         /** @var \Payever\TestBundle\Repository\ImageRepository $imageRepository */
         $imageRepository = $this->getDoctrine()->getRepository('PayeverTestBundle:Image');
