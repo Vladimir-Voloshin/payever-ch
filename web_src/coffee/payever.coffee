@@ -11,15 +11,18 @@ app = new Backbone.Marionette.Application({
 })
 
 TestObj = new Mn.Object.extend({
-  initialize: (
+  
+  initialize: () -> 
     this.albumsCollection.fetch()
-  ),
+    alert "lafew"
+  ,
+  
   albumsCollection: new Backbone.Collection(
     url: '/albums'
   )
 })
 
-
+test = new TestObj({})
 
 
 #AlbumsCollection = new Backbone.Collection
@@ -41,4 +44,4 @@ TestObj = new Mn.Object.extend({
 #  collection: AlbumsCollection
 #)
 
-TestObj.initialize()
+#TestObj.initialize
