@@ -4,10 +4,17 @@ Backbone = require("backbone");
 Mn = require("backbone.marionette");
 _ = require("underscore");
 
-app = new Backbone.Marionette.Application
+app = new Backbone.Marionette.Application({
+#  initialize:(
+#    console.log(this)
+#  )
+})
 
+AlbumsCollection = new Backbone.Collection
+AlbumsCollection.url = '/albums'
+AlbumsCollection.fetch()
 
-Album = Mn.LayoutView.extend(
+Album = Mn.ItemView.extend(
   tagName:  'li',
   template: _.template('<%- albumName %> &mdash; <%- id %>')
 )
@@ -19,11 +26,7 @@ AlbumsList = Mn.CollectionView.extend({
 })
 
 albums = new AlbumsList(
-  collection:
-    new Backbone.Collection([
-      {assignee: 'Scott', text: 'Write a book about Marionette'},
-      {assignee: 'Andrew', text: 'Do some coding'}
-    ])
+  collection: AlbumsCollection
 )
   
 albums.render()

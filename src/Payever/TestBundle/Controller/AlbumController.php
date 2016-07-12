@@ -19,6 +19,19 @@ class AlbumController extends Controller
     }
     
     /**
+     * @Route("/albums/", name="get_albums")
+     */
+    public function getAlbumsAction(Request $request)
+    {
+        /** @var \Payever\TestBundle\Repository\AlbumRepository $albumRepository */
+        $albumRepository = $this->getDoctrine()->getRepository('PayeverTestBundle:Album');
+        foreach ($albumRepository->findAll() as $album){
+            $result[] = $album->toJson();
+        }
+        return new JsonResponse($result);
+    }   
+    
+    /**
      * @Route("/albums/count_images/{amount}", name="get_albums_by_images_count")
      */
     public function getByImagesCountAction(Request $request, $amount)

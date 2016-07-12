@@ -1,3 +1,7 @@
+get_albums:
+    path:     /albums
+    defaults: { _controller: PayeverTestBundle:Album:getAlbums }
+    
 get_albums_by_images_count:
     path:     /albums/count_images/{amount}
     defaults: { _controller: PayeverTestBundle:Album:getByImagesCount }
