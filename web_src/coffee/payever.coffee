@@ -10,23 +10,35 @@ app = new Backbone.Marionette.Application({
 #  )
 })
 
-AlbumsCollection = new Backbone.Collection
-AlbumsCollection.url = '/albums'
-AlbumsCollection.fetch()
-
-Album = Mn.ItemView.extend(
-  tagName:  'li',
-  template: _.template('<%- albumName %> &mdash; <%- id %>')
-)
-
-AlbumsList = Mn.CollectionView.extend({
-  el: '#albums',
-  tagName: 'ul',
-  childView: Album
+TestObj = new Mn.Object.extend({
+  initialize: (
+    this.albumsCollection.fetch()
+  ),
+  albumsCollection: new Backbone.Collection(
+    url: '/albums'
+  )
 })
 
-albums = new AlbumsList(
-  collection: AlbumsCollection
-)
-  
-albums.render()
+
+
+
+#AlbumsCollection = new Backbone.Collection
+#AlbumsCollection.url = '/albums'
+#AlbumsCollection.fetch()
+#
+#Album = Mn.ItemView.extend(
+#  tagName:  'li',
+#  template: _.template('<%- albumName %> &mdash; <%- id %>')
+#)
+#
+#AlbumsList = Mn.CollectionView.extend({
+#  el: '#albums',
+#  tagName: 'ul',
+#  childView: Album
+#})
+#
+#albums = new AlbumsList(
+#  collection: AlbumsCollection
+#)
+
+TestObj.initialize()
