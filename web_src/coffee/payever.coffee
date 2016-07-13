@@ -1,47 +1,21 @@
-$ = require("jquery");
-Backbone = require("backbone");
 #Bs = require("backbone.babysitter");
-Mn = require("backbone.marionette");
-_ = require("underscore");
+#_ = require("underscore")
+Backbone    = require("backbone")
+Mn          = require("backbone.marionette")
+#viewManager = require('./main.coffee')
+router      = require('./router.coffee')
 
-app = new Backbone.Marionette.Application({
-#  initialize:(
-#    console.log(this)
-#  )
-})
+payever = Mn.Application.extend({
+  root: '/'
+});
 
-TestObj = new Mn.Object.extend({
-  
-  initialize: () -> 
-    this.albumsCollection.fetch()
-    alert "lafew"
-  ,
-  
-  albumsCollection: new Backbone.Collection(
-    url: '/albums'
-  )
-})
-
-test = new TestObj({})
+payeverApp = new payever({
+  container: '#appData'
+});
 
 
-#AlbumsCollection = new Backbone.Collection
-#AlbumsCollection.url = '/albums'
-#AlbumsCollection.fetch()
-#
-#Album = Mn.ItemView.extend(
-#  tagName:  'li',
-#  template: _.template('<%- albumName %> &mdash; <%- id %>')
-#)
-#
-#AlbumsList = Mn.CollectionView.extend({
-#  el: '#albums',
-#  tagName: 'ul',
-#  childView: Album
-#})
-#
-#albums = new AlbumsList(
-#  collection: AlbumsCollection
-#)
+payeverApp.addInitializer(() ->
+  console.log('init')
+)
 
-#TestObj.initialize
+payeverApp.start({init:'home'})
