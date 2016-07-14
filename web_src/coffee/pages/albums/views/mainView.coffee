@@ -1,4 +1,4 @@
-Backbone = require("backbone")
+AlbumsCollection = require('./../models/albumsCollection.coffee')
 Mn = require("backbone.marionette")
 _ = require("underscore")
 
@@ -6,18 +6,17 @@ mainView = Mn.View.extend({
   childView: albumsList
 })
 
-albumsCollection: Backbone.Collection.extend({
-  url: '/albums'
-}),
-
-albumsList: Mn.CollectionView.extend({
-  collection: this.albumsCollection,
+albumsList = Mn.CollectionView.extend({
+  collection: new AlbumsCollection(),
   el: '#albums',
+  modelEvents: {
+    fetch: 'render'
+  },
   tagName: 'ul',
-  childView: this.albumRaw
-}),
+  childView: albumRaw
+})
 
-albumRaw: Mn.ItemView.extend(
+albumRaw = Mn.ItemView.extend(
   tagName:  'li',
   template: _.template('<%- albumName %> &mdash; <%- id %>')
 )

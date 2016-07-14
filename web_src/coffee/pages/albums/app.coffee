@@ -1,8 +1,9 @@
-#AlbumsCollection = require('./models/albumsCollection');
-#mainView = require('./views/mainView');
+mainView         = require('./views/mainView.coffee')
 
-run = () -> (
-  console.log('some output')
+
+run = (viewManager) -> (
+  albumsView = new mainView()
+  albumsView.render()
 ) 
 
 ###
@@ -18,4 +19,4 @@ return {
     }
 };
 ###
-module.exports = run
+module.exports = {run:run}
