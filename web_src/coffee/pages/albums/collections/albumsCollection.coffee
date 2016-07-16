@@ -6,6 +6,6 @@ albumsCollection = Backbone.Collection.extend({
 })
 
 albums = new albumsCollection
-#albums.fetch()
+albums.fetch()
 
 module.exports = albums
