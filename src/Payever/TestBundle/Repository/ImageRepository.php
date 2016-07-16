@@ -12,6 +12,7 @@ use Payever\TestBundle\Entity\Album;
 class ImageRepository extends \Doctrine\ORM\EntityRepository
 {
 	public function getAlbumImagesQuery($albumId, $page, \Knp\Component\Pager\Paginator $paginator){
+		$result = [];
 		$query = $this->createQueryBuilder('i');
 		$query->where('i.album = :album');
 		$query->setParameter('album', $albumId);

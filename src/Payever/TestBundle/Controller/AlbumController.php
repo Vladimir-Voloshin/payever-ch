@@ -36,9 +36,6 @@ class AlbumController extends Controller
      */
     public function getByImagesCountAction(Request $request, $amount)
     {
-//        if(!$request->isXmlHttpRequest()){
-//            
-//        }
         /** @var \Payever\TestBundle\Repository\AlbumRepository $albumRepository */
         $albumRepository = $this->getDoctrine()->getRepository('PayeverTestBundle:Album');
         
@@ -48,7 +45,8 @@ class AlbumController extends Controller
     }
 
     /**
-     * @Route("/albums/show/{albumId}/{page}", name="get_album_images")
+     * @Route("/album/{albumId}/page/{page}", name="get_album_images_paged")
+     * @Route("/album/{albumId}", name="get_album_images")
      */
     public function getAlbumImagesAction(Request $request, $albumId, $page = 1)
     {
