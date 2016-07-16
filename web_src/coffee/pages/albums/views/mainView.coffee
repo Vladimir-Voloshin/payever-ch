@@ -1,19 +1,23 @@
-AlbumsCollection = require('./../models/albumsCollection.coffee')
+AlbumsCollection = require('./../collections/albumsCollection.coffee')
 Mn = require("backbone.marionette")
 _ = require("underscore")
 
-mainView = Mn.View.extend({
-  childView: albumsList
-})
 
-albumsList = Mn.CollectionView.extend({
-  collection: new AlbumsCollection(),
-  el: '#albums',
-  modelEvents: {
-    fetch: 'render'
-  },
+mainView = Mn.CollectionView.extend({
+  collection: AlbumsCollection,
+  el: '#appData',
   tagName: 'ul',
-  childView: albumRaw
+  childView: albumRaw,
+
+  initialize: () -> (
+    console.log("init")
+    this.collection.fetch()
+  ),
+
+	render: () -> (
+    console.log("render")
+#    this.fetch()
+  )
 })
 
 albumRaw = Mn.ItemView.extend(
