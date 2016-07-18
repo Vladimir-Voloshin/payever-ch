@@ -4,14 +4,15 @@ router      = require('./router.coffee')
 
 payever = Mn.Application.extend({});
 
-payeverApp = new payever();
+payeverApp = new payever({
+  router: new router({pushState: true})
+})
 
 payeverApp.addInitializer(() ->
-  appRouter = new router({pushState: true, initialData: {}})
   
   #router will not work without this line
   Backbone.history.start();
-  appRouter.navigate('', {trigger: true})
+  this.router.navigate('', {trigger: true})
 )
 
 payeverApp.start({})

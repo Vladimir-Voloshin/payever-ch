@@ -53,8 +53,8 @@ class AlbumController extends Controller
         /** @var \Payever\TestBundle\Repository\ImageRepository $imageRepository */
         $imageRepository = $this->getDoctrine()->getRepository('PayeverTestBundle:Image');
 
-        return new JsonResponse(array(
-            'items' => $imageRepository->getAlbumImagesQuery($albumId, $page, $this->get('knp_paginator'))
-        ));
+        return new JsonResponse(
+            $imageRepository->getAlbumImagesQuery($albumId, $page, $this->get('knp_paginator'))
+        );
     }
 }
