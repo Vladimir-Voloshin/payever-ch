@@ -9,10 +9,8 @@ payeverApp = new payever({
 })
 
 payeverApp.addInitializer(() ->
-  
-  #router will not work without this line
   Backbone.history.start();
-  this.router.navigate('', {trigger: true})
+  require('./appDispatcher/actionsRegister.coffee')
 )
 
 payeverApp.start({})

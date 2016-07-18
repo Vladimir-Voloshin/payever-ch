@@ -1,5 +1,5 @@
-Mn       = require("backbone.marionette")
-_        = require("underscore")
+Mn = require("backbone.marionette")
+_  = require("underscore")
 
 albumRaw = Mn.ItemView.extend(
   tagName:  'li',
