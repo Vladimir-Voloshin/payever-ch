@@ -1,11 +1,11 @@
-albumRaw         = require('./albumRawView.coffee')
+albumRaw         = require('./albumRowView.coffee')
 AlbumsCollection = require('./../collections/albumsCollection.coffee')
 dispatcher       = require("./../../../appDispatcher/appDispatcher.coffee")
 Mn               = require('backbone.marionette')
 
 mainView = Mn.CollectionView.extend({
   collection: AlbumsCollection,
-  el: '#appData',
+#  el: '#appData',
   tagName: 'ul',
   childView: albumRaw,
   onChildviewSelectEntry: (child, options) -> (

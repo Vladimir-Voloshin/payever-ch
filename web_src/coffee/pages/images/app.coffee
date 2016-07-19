@@ -1,8 +1,9 @@
+layout   = require('./../../appLayout.coffee')
 mainView = require('./views/mainView.coffee')
 
 run = (albumId) -> (
   mainDataView = new mainView({albumId:albumId})
-  mainDataView.render()
+  layout.getRegion('content').show(mainDataView)
 ) 
 
 module.exports = {run:run}

@@ -1,8 +1,9 @@
+layout   = require('./../../appLayout.coffee')
 mainView = require('./views/mainView.coffee')
 
 run = () -> (
   mainDataView = new mainView()
-  mainDataView.render()
+  layout.getRegion('menu').show(mainDataView)
 ) 
 
 module.exports = {run:run}
