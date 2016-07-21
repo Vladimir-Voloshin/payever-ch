@@ -5,11 +5,10 @@ Mn               = require('backbone.marionette')
 
 mainView = Mn.CollectionView.extend({
   collection: AlbumsCollection,
-#  el: '#appData',
   tagName: 'ul',
   childView: albumRaw,
   onChildviewSelectEntry: (child, options) -> (
-    dispatcher.trigger('selectAlbum', child.model.attributes.id)
+    dispatcher.trigger('showAlbumImages', {'albumId':child.model.attributes.id, 'page':1})
   )
 })
 

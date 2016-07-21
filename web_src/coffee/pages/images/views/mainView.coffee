@@ -1,17 +1,19 @@
-appConstants     = require('./../../../appConstants.coffee')
-imageRow         = require('./imageRowView.coffee')
-ImagesCollection = require('./../collections/imagesCollection.coffee')
+_                = require("underscore")
+blockContent     = require("./imageListView.coffee")
+mainViewTemplate = require("./../templates/mainView.coffee")
 Mn               = require("backbone.marionette")
+navigationPanel  = require("./navigationPanelView.coffee")
 
-mainView = Mn.CollectionView.extend({
-  collection: new ImagesCollection(),
-#  el: '#appData',
-  tagName: 'ul',
-  initialize: () -> (
-    this.collection.url = appConstants.IMAGES_LIST_DATA_URL + this.options.albumId
-    this.collection.fetch()
+mainView = Mn.LayoutView.extend({
+  onBeforeShow: () -> (
+    this.getRegion('navigation').show(new navigationPanel())
+    this.getRegion('content').show(new blockContent(this.options))
   ),
-  childView: imageRow
+  template: _.template(mainViewTemplate),
+  regions: {
+    navigation: "#images-navigation",
+    content: '#images-list'
+  }
 })
 
 module.exports = mainView

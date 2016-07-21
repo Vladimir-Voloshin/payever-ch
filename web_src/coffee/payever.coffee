@@ -1,7 +1,6 @@
 Backbone    = require("backbone")
 Mn          = require("backbone.marionette")
 router      = require('./router.coffee')
-layout      = require('./appLayout.coffee')
 
 payever = Mn.Application.extend({});
 
