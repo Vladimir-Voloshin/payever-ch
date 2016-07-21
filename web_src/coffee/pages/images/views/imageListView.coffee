@@ -7,8 +7,8 @@ itemsList = Mn.CollectionView.extend({
   collection: new ImagesCollection(),
   tagName: 'ul',
   initialize: (options) -> (
-    console.log(options)
-    this.collection.url = appConstants.IMAGES_LIST_DATA_URL + this.options.albumId + 
+#    TODO: make setting of the url through method
+    this.collection.url = appConstants.IMAGES_LIST_DATA_URL + this.options.albumId + '/page/' + this.options.page
     this.collection.fetch()
   ),
   childView: imageRow

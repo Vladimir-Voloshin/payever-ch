@@ -1,6 +1,5 @@
-html = '
-<div id="navButtons">
-  <div id="scrollBack">back</div>
+html = '<div id="navButtons">
+  <div id="scrollBack" class="button <% if (page == 1) { %>hidden<%}%>">back </div>
   <div id="scrollForward">forward</div>
 </div>'
 

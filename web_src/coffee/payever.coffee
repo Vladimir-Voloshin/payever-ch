@@ -10,8 +10,8 @@ payeverApp = new payever({
 
 payeverApp.addInitializer(() ->
   Backbone.history.start();
+  require('./pages/albums/app.coffee').run()
   require('./appDispatcher/actionsRegister.coffee')
-  this.router.navigate('', {trigger:true})
 )
 
 payeverApp.start({})

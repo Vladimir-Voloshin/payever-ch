@@ -6,7 +6,7 @@ navigationPanel  = require("./navigationPanelView.coffee")
 
 mainView = Mn.LayoutView.extend({
   onBeforeShow: () -> (
-    this.getRegion('navigation').show(new navigationPanel())
+    this.getRegion('navigation').show(new navigationPanel(this.options))
     this.getRegion('content').show(new blockContent(this.options))
   ),
   template: _.template(mainViewTemplate),
