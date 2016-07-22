@@ -4,9 +4,10 @@
   "description": "Payever test task",
   "main": "vendor.js",
   "scripts": {
-    "cp": "browserify -t coffeeify web_src/coffee/payever.coffee > web/js/main.js",
+    "cp": "node-sass -r web_src/scss -o web/css | browserify -t coffeeify web_src/coffee/payever.coffee > web/js/main.js",
     "watch": "watchify -t coffeeify web_src/coffee/payever.coffee -o web/js/main.js",
     "gulp": "gulp",
+    "scss": "node-sass -r web_src/scss -o web/css",
     "test": "test-vendor"
   },
   "repository": {
@@ -41,6 +42,8 @@
     "gulp-uglify": "^1.5.4",
     "jquery": "^2.2.4",
     "less": "^2.7.1",
+    "node-sass": "^3.8.0",
+    "scss-compile": "^0.1.7",
     "underscore-template-loader": "^0.7.3",
     "watchify": "^3.7.0"
   }
