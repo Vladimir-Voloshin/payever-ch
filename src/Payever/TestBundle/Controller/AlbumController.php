@@ -3,10 +3,9 @@
 namespace Payever\TestBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Payever\TestBundle\Entity\Album as Album;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class AlbumController extends Controller
 {
@@ -23,12 +22,7 @@ class AlbumController extends Controller
      */
     public function getAlbumsAction(Request $request)
     {
-        /** @var \Payever\TestBundle\Repository\AlbumRepository $albumRepository */
-        $albumRepository = $this->getDoctrine()->getRepository('PayeverTestBundle:Album');
-        foreach ($albumRepository->findAll() as $album){
-            $result[] = $album->toJson();
-        }
-        return new JsonResponse($result);
+        return new Response($this->get('payever.album_manager')->getAllAlbums());
     }   
     
     /**
@@ -36,12 +30,7 @@ class AlbumController extends Controller
      */
     public function getByImagesCountAction(Request $request, $amount)
     {
-        /** @var \Payever\TestBundle\Repository\AlbumRepository $albumRepository */
-        $albumRepository = $this->getDoctrine()->getRepository('PayeverTestBundle:Album');
-        
-        return new JsonResponse(array(
-            'items' => $albumRepository->getByImagesCount($amount)
-        ));
+        return new Response($this->get('payever.album_manager')->getByImagesCount($amount));
     }
 
     /**
@@ -50,11 +39,6 @@ class AlbumController extends Controller
      */
     public function getAlbumImagesAction(Request $request, $albumId, $page = 1)
     {
-        /** @var \Payever\TestBundle\Repository\ImageRepository $imageRepository */
-        $imageRepository = $this->getDoctrine()->getRepository('PayeverTestBundle:Image');
-
-        return new JsonResponse(
-            $imageRepository->getAlbumImagesQuery($albumId, $page, $this->get('knp_paginator'))
-        );
+        return new Response($this->get('payever.album_manager')->getAlbumImages($albumId, $page));
     }
 }

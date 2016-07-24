@@ -6,19 +6,27 @@ navigationPanelView = require("./../templates/navigationPanelView.coffee")
 navigationPanel = Mn.ItemView.extend({
   events: {
     'click #scrollBack': 'scrollBack',
-    'click #scrollForward': 'scrollForward'
+    'click #scrollForward': 'scrollForward',
+    'click #pageButton': 'goToPage'
   },
   serializeData: () -> ({
-    page: this.options.page
+    firstPage: +this.options.currentPage == 1,
+    lastPage: +this.options.currentPage == +this.options.pagesTotal,
+    totalPages: +this.options.pagesTotal
   })
   template: _.template(navigationPanelView),
+  goToPage: (e) -> (
+    dispatcher.trigger('showAlbumImages', {'albumId':this.options.albumId, 'page':e.currentTarget.attributes['page'].value})
+  ),
   scrollBack: () -> (
-    if(this.options.page == 1)
+    if(this.options.currentPage == 1)
       return
-    dispatcher.trigger('showAlbumImages', {'albumId':this.options.albumId, 'page':parseInt(this.options.page)-1})
+    dispatcher.trigger('showAlbumImages', {'albumId':this.options.albumId, 'page':parseInt(this.options.currentPage)-1})
   ),
   scrollForward: () -> (
-    dispatcher.trigger('showAlbumImages', {'albumId':this.options.albumId, 'page':parseInt(this.options.page)+1})
+    if(+this.options.currentPage == +this.options.pagesTotal)
+      return
+    dispatcher.trigger('showAlbumImages', {'albumId':this.options.albumId, 'page':parseInt(this.options.currentPage)+1})
   )
 })
 

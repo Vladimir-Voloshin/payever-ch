@@ -2,7 +2,6 @@
 
 namespace Payever\TestBundle\Repository;
 
-use Payever\TestBundle\Entity\Album;
 /**
  * ImageRepository
  *
@@ -11,23 +10,11 @@ use Payever\TestBundle\Entity\Album;
  */
 class ImageRepository extends \Doctrine\ORM\EntityRepository
 {
-	public function getAlbumImagesQuery($albumId, $page, \Knp\Component\Pager\Paginator $paginator){
-		$result = [];
+	public function getAlbumImagesQuery($albumId){
 		$query = $this->createQueryBuilder('i');
 		$query->where('i.album = :album');
 		$query->setParameter('album', $albumId);
-
-		/** @var \Knp\Component\Pager\Paginator $paginator */
-		$pagination = $paginator->paginate(
-			$query->getQuery(),
-			$page,
-			Album::MAX_IMAGES_PER_PAGE
-		);
-
-		foreach ($pagination->getItems() as $item) {
-			$result[] = $item->toJson();
-		}
 		
-		return $result;
+		return $query;
 	}
 }

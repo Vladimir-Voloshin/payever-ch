@@ -1,4 +1,12 @@
 services:
-#    payever_test.example:
-#        class: Payever\TestBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]
+    payever.album_manager:
+        class: Payever\TestBundle\Services\AlbumManagerService
+        arguments:
+            doctrine:   @doctrine
+            paginator:  @knp_paginator
+            serializer: @serializer
+            
+    payever.image_manager:
+        class: Payever\TestBundle\Services\ImageManagerService
+        arguments:
+            doctrine: @doctrine.orm.entity_manager

@@ -1,6 +1,9 @@
 html = '<div id="navButtons">
-  <div id="scrollBack" class="button <% if (page == 1) { %>hidden<%}%>">back </div>
-  <div id="scrollForward" class="button">forward</div>
+  <div id="scrollBack" class="button<% if (firstPage) { %> hidden<%}%>">back </div>
+  <div id="scrollForward" class="button<% if (lastPage) { %> hidden<%}%>">forward</div>
+  <% for(var i = 1; i <= totalPages; i++){ %>
+    <div id="pageButton" page="<%- i%>" class="button pageButton"><%- i%></div>
+  <% } %>
 </div>'
 
 module.exports = html
