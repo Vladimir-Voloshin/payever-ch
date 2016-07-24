@@ -10,8 +10,9 @@ navigationPanel = Mn.ItemView.extend({
     'click #pageButton': 'goToPage'
   },
   serializeData: () -> ({
-    firstPage: +this.options.currentPage == 1,
-    lastPage: +this.options.currentPage == +this.options.pagesTotal,
+    currentPos: +this.options.currentPage,
+    firstPage:  +this.options.currentPage == 1,
+    lastPage:   +this.options.currentPage == +this.options.pagesTotal,
     totalPages: +this.options.pagesTotal
   })
   template: _.template(navigationPanelView),
