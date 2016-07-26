@@ -17,10 +17,10 @@ class Version20160601152045 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $imagesPerAlbum = 5;
-        for($i = 1; $i <= 5; $i++){
+        for($i = 1; 5 >= $i; $i++){
             $this->addSql(sprintf("INSERT INTO `%s` (`id`, `album_name`, `created`) VALUES ('%d', '%s', '%s')", 'albums', $i, 'album'.$i, date('Y-m-d G:i:s', time())));
             
-            for($j = 1; $j <= $imagesPerAlbum; $j++){
+            for($j = 1; $imagesPerAlbum >= $j; $j++){
                 $this->addSql(sprintf("INSERT INTO `%s` (`image_name`, `album_id`, `created`) VALUES ('%s', '%s', '%s')", 
                     'images', 
                     'favicon.ico', 

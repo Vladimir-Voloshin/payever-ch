@@ -11,7 +11,7 @@ class AlbumManagerService
     /**
      * @var \Doctrine\ORM\EntityManager
      */
-    protected $doctrine;
+    protected $em;
     
     /**
      * @var \Knp\Component\Pager\Paginator
@@ -23,9 +23,9 @@ class AlbumManagerService
      */
     protected $serializer;
 
-    public function __construct($doctrine, $paginator, $serializer)
+    public function __construct($em, $paginator, $serializer)
     {
-        $this->doctrine = $doctrine;
+        $this->em = $em;
         $this->paginator = $paginator;
         $this->serializer = $serializer;
     }
@@ -37,7 +37,7 @@ class AlbumManagerService
      */
     public function getAllAlbums(){
         /** @var \Payever\TestBundle\Repository\AlbumRepository $albumRepository */
-        $albumRepository = $this->doctrine->getRepository('PayeverTestBundle:Album');
+        $albumRepository = $this->em->getRepository('PayeverTestBundle:Album');
         foreach ($albumRepository->findAll() as $album){
             $result['items'][] = $album->toJson();
         }
@@ -47,7 +47,7 @@ class AlbumManagerService
 
     /**
      * @Param  {Integer} $albumId album's id.
-     * @Param  {String} $page album's images page.
+     * @Param  {Integer} $page album's images page.
      * 
      * @Return {JSON} 
      * 
@@ -57,7 +57,7 @@ class AlbumManagerService
         $result = [];
         
         /** @var \Payever\TestBundle\Repository\ImageRepository $imageRepository */
-        $imageRepository = $this->doctrine->getRepository('PayeverTestBundle:Image');
+        $imageRepository = $this->em->getRepository('PayeverTestBundle:Image');
         $query = $imageRepository->getAlbumImagesQuery($albumId);
 
         /** @var \Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination $pagination */
@@ -85,7 +85,7 @@ class AlbumManagerService
     public function getByImagesCount($amount)
     {
         /** @var \Payever\TestBundle\Repository\AlbumRepository $albumRepository */
-        $albumRepository = $this->doctrine->getRepository('PayeverTestBundle:Album');
+        $albumRepository = $this->em->getRepository('PayeverTestBundle:Album');
         $result = $albumRepository->getByImagesAmount($amount);
         foreach ($result as $item) {
             $items[] = $item["album"]->toJson();
