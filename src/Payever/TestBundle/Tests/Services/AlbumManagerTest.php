@@ -6,8 +6,11 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Payever\TestBundle\Services\AlbumManagerService;
 use Payever\TestBundle\Entity\Album;
+use Payever\TestBundle\Entity\Image;
 use Payever\TestBundle\Repository\AlbumRepository;
+use Payever\TestBundle\Repository\ImageRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Doctrine\ORM\AbstractQuery;
 
 class AlbumManagerTest extends WebTestCase
 {
@@ -38,7 +41,7 @@ class AlbumManagerTest extends WebTestCase
             $albums[] = $album;
         }
 
-        // Now, mock the repository so it returns the mock of the employee
+        // Now, mock the repository so it returns the mock of the album
         $albumRepository = $this
             ->getMockBuilder(AlbumRepository::class)
             ->disableOriginalConstructor()
@@ -59,4 +62,43 @@ class AlbumManagerTest extends WebTestCase
         $albumFatsManager = new AlbumManagerService($entityManager, self::$paginator, self::$serializer);
         $this->assertStringStartsWith('{"items":', $albumFatsManager->getAllAlbums());
     }
+
+    public function testGetAlbumImages()
+    {
+        // Use the Abstract query, which has nearly all needed Methods as the Query.
+        $queryMock = $this
+            ->getMockBuilder(AbstractQuery::class)
+            ->setMethods(array('setParameter', 'getResult'))
+            ->disableOriginalConstructor()
+            ->getMockForAbstractClass();
+
+
+        $queryBuilderMock = $this->getMockBuilder(QueryBuilder::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $queryBuilderMock->expects($this->once())
+            ->method('getQuery')
+            ->will($this->returnValue($queryMock));
+
+        $imageRepository = $this
+            ->getMockBuilder(ImageRepository::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $imageRepository->expects($this->once())
+            ->method('getAlbumImagesQuery')
+            ->will($this->returnValue($queryBuilderMock));
+        
+        $entityManager = $this
+            ->getMockBuilder(ObjectManager::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $entityManager->expects($this->once())
+            ->method('getRepository')
+            ->will($this->returnValue($imageRepository));
+
+        $albumFatsManager = new AlbumManagerService($entityManager, self::$paginator, self::$serializer);
+        $this->assertStringStartsWith('{"items":', $albumFatsManager->getAlbumImages(1, 1));
+    }
+    
+    
 }
