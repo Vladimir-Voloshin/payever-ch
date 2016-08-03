@@ -1,9 +1,9 @@
 Mn = require("backbone.marionette")
-_  = require("underscore")
+_und  = require("underscore")
 
 albumRaw = Mn.ItemView.extend(
   tagName:  'li',
-  template: _.template('<%- albumName %>'),
+  template: _und.template('<%- albumName %>'),
   triggers: {
     click: 'select:entry'
   }

@@ -17524,15 +17524,15 @@ module.exports = albums;
 
 
 },{"./../../../appConstants.coffee":7,"backbone":4}],13:[function(require,module,exports){
-var Mn, _, albumRaw;
+var Mn, _und, albumRaw;
 
 Mn = require("backbone.marionette");
 
-_ = require("underscore");
+_und = require("underscore");
 
 albumRaw = Mn.ItemView.extend({
   tagName: 'li',
-  template: _.template('<%- albumName %>'),
+  template: _und.template('<%- albumName %>'),
   triggers: {
     click: 'select:entry'
   }
@@ -17643,24 +17643,24 @@ module.exports = itemsList;
 
 
 },{"./../collections/imagesCollection.coffee":16,"./imageRowView.coffee":20,"backbone.marionette":2}],20:[function(require,module,exports){
-var Mn, _, albumRaw;
+var Mn, _und, albumRaw;
 
 Mn = require("backbone.marionette");
 
-_ = require("underscore");
+_und = require("underscore");
 
 albumRaw = Mn.ItemView.extend({
   tagName: 'li',
-  template: _.template('<img src="./<%- fileName %>" /> <%- fileName %> &mdash; <%- id %>')
+  template: _und.template('<img src="./<%- fileName %>" /> <%- fileName %> &mdash; <%- id %>')
 });
 
 module.exports = albumRaw;
 
 
 },{"backbone.marionette":2,"underscore":6}],21:[function(require,module,exports){
-var Mn, _, blockContent, mainView, mainViewTemplate, navigationPanel;
+var Mn, _und, blockContent, mainView, mainViewTemplate, navigationPanel;
 
-_ = require("underscore");
+_und = require("underscore");
 
 blockContent = require("./imageListView.coffee");
 
@@ -17675,7 +17675,7 @@ mainView = Mn.LayoutView.extend({
     this.getRegion('navigation').show(new navigationPanel(this.options));
     return this.getRegion('content').show(new blockContent());
   },
-  template: _.template(mainViewTemplate),
+  template: _und.template(mainViewTemplate),
   regions: {
     navigation: "#images-navigation",
     content: '#images-list'
@@ -17686,9 +17686,9 @@ module.exports = mainView;
 
 
 },{"./../templates/mainView.coffee":17,"./imageListView.coffee":19,"./navigationPanelView.coffee":22,"backbone.marionette":2,"underscore":6}],22:[function(require,module,exports){
-var Mn, _, dispatcher, navigationPanel, navigationPanelView;
+var Mn, _und, dispatcher, navigationPanel, navigationPanelView;
 
-_ = require("underscore");
+_und = require("underscore");
 
 dispatcher = require("./../../../appDispatcher/appDispatcher.coffee");
 
@@ -17710,7 +17710,7 @@ navigationPanel = Mn.ItemView.extend({
       totalPages: +this.options.pagesTotal
     };
   },
-  template: _.template(navigationPanelView),
+  template: _und.template(navigationPanelView),
   goToPage: function(e) {
     return dispatcher.trigger('showAlbumImages', {
       'albumId': this.options.albumId,

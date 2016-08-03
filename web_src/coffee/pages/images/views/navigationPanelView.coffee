@@ -1,4 +1,4 @@
-_                   = require("underscore")
+_und                   = require("underscore")
 dispatcher          = require("./../../../appDispatcher/appDispatcher.coffee")
 Mn                  = require("backbone.marionette")
 navigationPanelView = require("./../templates/navigationPanelView.coffee")
@@ -15,7 +15,7 @@ navigationPanel = Mn.ItemView.extend({
     lastPage:   +this.options.currentPage == +this.options.pagesTotal,
     totalPages: +this.options.pagesTotal
   })
-  template: _.template(navigationPanelView),
+  template: _und.template(navigationPanelView),
   goToPage: (e) -> (
     dispatcher.trigger('showAlbumImages', {'albumId':this.options.albumId, 'page':e.currentTarget.attributes['page'].value})
   ),
