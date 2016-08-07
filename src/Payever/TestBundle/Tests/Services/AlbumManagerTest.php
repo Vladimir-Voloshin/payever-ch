@@ -11,6 +11,8 @@ use Payever\TestBundle\Repository\AlbumRepository;
 use Payever\TestBundle\Repository\ImageRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Doctrine\ORM\AbstractQuery;
+use Knp\Component\Pager\Paginator;
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
 
 class AlbumManagerTest extends WebTestCase
 {
@@ -60,10 +62,12 @@ class AlbumManagerTest extends WebTestCase
             ->will($this->returnValue($albumRepository));
 
         $albumFatsManager = new AlbumManagerService($entityManager, self::$paginator, self::$serializer);
-        $this->assertStringStartsWith('{"items":', $albumFatsManager->getAllAlbums());
+
+        $result = json_decode( $albumFatsManager->getAllAlbums(), true);
+        $this->assertArrayHasKey('items', $result);
     }
 
-    public function testGetAlbumImages()
+    public function testGetAlbumImages($albumId = 1, $page = 1)
     {
         for($i = 1; 25 >= $i; $i++){
             // First, mock the object to be used in the test
@@ -71,15 +75,33 @@ class AlbumManagerTest extends WebTestCase
             $images[] = $image;
         }
 
+        $paginatorEvent = $this
+            ->getMockBuilder(SlidingPagination::class)
+            ->setMethods(array('getPageCount', 'getItems'))
+            ->disableOriginalConstructor()
+            ->getMock();
+        $paginatorEvent->expects($this->once())
+            ->method('getPageCount')
+            ->will($this->returnValue(count($images)/Album::MAX_IMAGES_PER_PAGE));
+        $paginatorEvent->expects($this->once())
+            ->method('getItems')
+            ->will($this->returnValue(array_slice($images, ($page-1)*Album::MAX_IMAGES_PER_PAGE, ($page-1)*Album::MAX_IMAGES_PER_PAGE+Album::MAX_IMAGES_PER_PAGE )));
+        
+        $paginator = $this
+            ->getMockBuilder(Paginator::class)
+            ->setMethods(array('paginate'))
+            ->disableOriginalConstructor()
+            ->getMock();
+        $paginator->expects($this->once())
+            ->method('paginate')
+            ->will($this->returnValue($paginatorEvent));
+
         // Use the Abstract query, which has nearly all needed Methods as the Query.
         $query = $this
             ->getMockBuilder(AbstractQuery::class)
             ->setMethods(array('setParameter', 'getResult'))
             ->disableOriginalConstructor()
             ->getMockForAbstractClass();
-        $query->expects($this->once())
-            ->method('getResult')
-            ->will($this->returnValue($images));
 
         $imageRepository = $this
             ->getMockBuilder(ImageRepository::class)
@@ -97,8 +119,11 @@ class AlbumManagerTest extends WebTestCase
             ->method('getRepository')
             ->will($this->returnValue($imageRepository));
 
-        $albumFatsManager = new AlbumManagerService($entityManager, self::$paginator, self::$serializer);
-        $this->assertStringStartsWith('{"items":', $albumFatsManager->getAlbumImages(1, 1));
+        $albumFatsManager = new AlbumManagerService($entityManager, $paginator, self::$serializer);
+        $result = json_decode( $albumFatsManager->getAlbumImages($albumId, $page), true);
+        
+        $this->assertArrayHasKey('items', $result);
+        $this->assertArrayHasKey('paging', $result);
     }
     
     
