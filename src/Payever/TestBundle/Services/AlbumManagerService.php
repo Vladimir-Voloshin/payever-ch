@@ -62,7 +62,7 @@ class AlbumManagerService
 
         /** @var \Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination $pagination */
         $pagination = $this->paginator->paginate(
-            $query->getQuery(),
+            $query,
             $page,
             Album::MAX_IMAGES_PER_PAGE
         );

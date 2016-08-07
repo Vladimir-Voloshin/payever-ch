@@ -15,6 +15,6 @@ class ImageRepository extends \Doctrine\ORM\EntityRepository
 		$query->where('i.album = :album');
 		$query->setParameter('album', $albumId);
 		
-		return $query;
+		return $query->getQuery();
 	}
 }

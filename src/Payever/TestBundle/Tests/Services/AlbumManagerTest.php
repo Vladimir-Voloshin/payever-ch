@@ -65,20 +65,21 @@ class AlbumManagerTest extends WebTestCase
 
     public function testGetAlbumImages()
     {
+        for($i = 1; 25 >= $i; $i++){
+            // First, mock the object to be used in the test
+            $image = $this->createMock(Image::class);
+            $images[] = $image;
+        }
+
         // Use the Abstract query, which has nearly all needed Methods as the Query.
-        $queryMock = $this
+        $query = $this
             ->getMockBuilder(AbstractQuery::class)
             ->setMethods(array('setParameter', 'getResult'))
             ->disableOriginalConstructor()
             ->getMockForAbstractClass();
-
-
-        $queryBuilderMock = $this->getMockBuilder(QueryBuilder::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $queryBuilderMock->expects($this->once())
-            ->method('getQuery')
-            ->will($this->returnValue($queryMock));
+        $query->expects($this->once())
+            ->method('getResult')
+            ->will($this->returnValue($images));
 
         $imageRepository = $this
             ->getMockBuilder(ImageRepository::class)
@@ -86,7 +87,7 @@ class AlbumManagerTest extends WebTestCase
             ->getMock();
         $imageRepository->expects($this->once())
             ->method('getAlbumImagesQuery')
-            ->will($this->returnValue($queryBuilderMock));
+            ->will($this->returnValue($query));
         
         $entityManager = $this
             ->getMockBuilder(ObjectManager::class)
