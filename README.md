@@ -1,3 +1,8 @@
+Config for docker compose
+-------------------------
+
+https://hub.docker.com/r/voloshinvladimir/payever-docker/
+
 Task description
 =================
 
