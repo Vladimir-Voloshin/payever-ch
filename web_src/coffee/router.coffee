@@ -1,4 +1,4 @@
-Mn          = require("backbone.marionette")
+Mn = require("backbone.marionette")
 
 router = Mn.AppRouter.extend({
   appRoutes: {
