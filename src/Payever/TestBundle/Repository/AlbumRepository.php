@@ -10,6 +10,12 @@ namespace Payever\TestBundle\Repository;
  */
 class AlbumRepository extends \Doctrine\ORM\EntityRepository
 {
+	/**
+	 * Get Watch by brand, model and sku
+	 *
+	 * @param integer $amountImagesPerAlbum
+	 * @return \Payever\TestBundle\Entity\Album[]
+	 */
 	public function getByImagesAmount($amountImagesPerAlbum){
 		$query = $this->createQueryBuilder('a');
 		$query->select('a as album, COUNT(i) as c');

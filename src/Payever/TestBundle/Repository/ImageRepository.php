@@ -10,6 +10,12 @@ namespace Payever\TestBundle\Repository;
  */
 class ImageRepository extends \Doctrine\ORM\EntityRepository
 {
+	/**
+	 * Get images by album id
+	 *
+	 * @param integer $albumId
+	 * @return \Payever\TestBundle\Entity\Image[]
+	 */
 	public function getAlbumImagesQuery($albumId){
 		$query = $this->createQueryBuilder('i');
 		$query->where('i.album = :album');

@@ -19,7 +19,11 @@ class AlbumManagerTest extends WebTestCase
     public static $container;
     public static $paginator;
     public static $serializer;
-    
+
+    /**
+     * Perform pre-launch test routine
+     * @return void
+     */
     public static function setUpBeforeClass()
     {
         //start the symfony kernel
@@ -34,7 +38,11 @@ class AlbumManagerTest extends WebTestCase
         self::$paginator = self::$container->get('knp_paginator');
         self::$serializer = self::$container->get('serializer');
     }
-    
+
+    /**
+     * Test getting all albums logic
+     * @return bool
+     */
     public function testGetAllAlbums()
     {
         for($i = 1; 5 >= $i; $i++){
@@ -67,6 +75,13 @@ class AlbumManagerTest extends WebTestCase
         $this->assertArrayHasKey('items', $result);
     }
 
+    /**
+     * Test getting all albums logic
+     * 
+     * @param integer $albumId
+     * @param integer $page
+     * @return bool
+     */
     public function testGetAlbumImages($albumId = 1, $page = 1)
     {
         for($i = 1; 25 >= $i; $i++){
