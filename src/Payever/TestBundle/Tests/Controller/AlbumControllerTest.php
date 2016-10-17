@@ -7,6 +7,10 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class AlbumControllerTest extends WebTestCase
 {
+    /**
+     * Tests index url response contains specific data
+     * @return bool
+     */
     public function testIndex()
     {
         $client = static::createClient();
@@ -17,7 +21,9 @@ class AlbumControllerTest extends WebTestCase
     }
     
     /**
+     * Tests urls return 200 code
      * @dataProvider urlProvider
+     * @return bool
      */
     public function testPageIsSuccessful($url)
     {
@@ -27,6 +33,10 @@ class AlbumControllerTest extends WebTestCase
         $this->assertTrue($client->getResponse()->isSuccessful());
     }
 
+    /**
+     * Returns array of links to test
+     * @return string[]
+     */
     public function urlProvider()
     {
         return array(
