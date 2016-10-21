@@ -9,7 +9,7 @@ class AlbumControllerTest extends WebTestCase
 {
     /**
      * Tests index url response contains specific data
-     * @return bool
+     * @return boolean|null
      */
     public function testIndex()
     {
@@ -23,7 +23,7 @@ class AlbumControllerTest extends WebTestCase
     /**
      * Tests urls return 200 code
      * @dataProvider urlProvider
-     * @return bool
+     * @return boolean|null
      */
     public function testPageIsSuccessful($url)
     {

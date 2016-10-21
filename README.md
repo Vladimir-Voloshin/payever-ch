@@ -3,6 +3,8 @@ Config for docker compose
 
 https://hub.docker.com/r/voloshinvladimir/payever-docker/
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Vladimir-Voloshin/payever-ch/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Vladimir-Voloshin/payever-ch/?branch=master)
+
 Task description
 =================
 

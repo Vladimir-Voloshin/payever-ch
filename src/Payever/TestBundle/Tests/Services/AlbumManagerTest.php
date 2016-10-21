@@ -2,7 +2,6 @@
 
 namespace Payever\TestBundle\Tests\Services;
 
-use Doctrine\ORM\EntityRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Payever\TestBundle\Services\AlbumManagerService;
 use Payever\TestBundle\Entity\Album;
@@ -16,6 +15,7 @@ use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
 
 class AlbumManagerTest extends WebTestCase
 {
+    const ALBUMS_TO_MOCK = 5;
     public static $container;
     public static $paginator;
     public static $serializer;
@@ -45,7 +45,7 @@ class AlbumManagerTest extends WebTestCase
      */
     public function testGetAllAlbums()
     {
-        for($i = 1; 5 >= $i; $i++){
+        for($i = 1; self::ALBUMS_TO_MOCK >= $i; $i++) {
             // First, mock the object to be used in the test
             $album = $this->createMock(Album::class);
             $albums[] = $album;
@@ -84,7 +84,7 @@ class AlbumManagerTest extends WebTestCase
      */
     public function testGetAlbumImages($albumId = 1, $page = 1)
     {
-        for($i = 1; 25 >= $i; $i++){
+        for($i = 1; 25 >= $i; $i++) {
             // First, mock the object to be used in the test
             $image = $this->createMock(Image::class);
             $images[] = $image;
@@ -100,7 +100,7 @@ class AlbumManagerTest extends WebTestCase
             ->will($this->returnValue(count($images)/Album::MAX_IMAGES_PER_PAGE));
         $paginatorEvent->expects($this->once())
             ->method('getItems')
-            ->will($this->returnValue(array_slice($images, ($page-1)*Album::MAX_IMAGES_PER_PAGE, ($page-1)*Album::MAX_IMAGES_PER_PAGE+Album::MAX_IMAGES_PER_PAGE )));
+            ->will($this->returnValue(array_slice($images, ($page-1)*Album::MAX_IMAGES_PER_PAGE, ($page-1)*Album::MAX_IMAGES_PER_PAGE+Album::MAX_IMAGES_PER_PAGE)));
         
         $paginator = $this
             ->getMockBuilder(Paginator::class)
@@ -135,7 +135,7 @@ class AlbumManagerTest extends WebTestCase
             ->will($this->returnValue($imageRepository));
 
         $albumFatsManager = new AlbumManagerService($entityManager, $paginator, self::$serializer);
-        $result = json_decode( $albumFatsManager->getAlbumImages($albumId, $page), true);
+        $result = json_decode($albumFatsManager->getAlbumImages($albumId, $page), true);
         
         $this->assertArrayHasKey('items', $result);
         $this->assertArrayHasKey('paging', $result);
