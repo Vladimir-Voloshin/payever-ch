@@ -35,19 +35,20 @@ class AlbumManagerService
      * @Return {JSON}
      *
      */
-    public function getAllAlbums(){
+    public function getAllAlbums()
+    {
         /** @var \Payever\TestBundle\Repository\AlbumRepository $albumRepository */
         $albumRepository = $this->em->getRepository('PayeverTestBundle:Album');
-        foreach ($albumRepository->findAll() as $album){
+        foreach ($albumRepository->findAll() as $album) {
             $result['items'][] = $album->toJson();
         }
         
-        return $this->serializer->serialize($result, 'json');
+        return $this->serializer->serialize( $result, 'json' );
     }
 
     /**
-     * @Param  {Integer} $albumId album's id.
-     * @Param  {Integer} $page album's images page.
+     * @Param  integer $albumId album's id.
+     * @Param  integer $page album's images page.
      * 
      * @Return {JSON} 
      * 
@@ -77,7 +78,7 @@ class AlbumManagerService
     }
 
     /**
-     * @Param  {Integer} $amount Max amount of images in album
+     * @Param  integer $amount Max amount of images in album
      *
      * @Return {JSON}
      *
