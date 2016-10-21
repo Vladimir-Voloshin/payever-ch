@@ -16,7 +16,8 @@ class AlbumRepository extends \Doctrine\ORM\EntityRepository
      * @param integer $amountImagesPerAlbum
      * @return \Payever\TestBundle\Entity\Album[]
      */
-    public function getByImagesAmount($amountImagesPerAlbum) {
+    public function getByImagesAmount($amountImagesPerAlbum)
+    {
         $query = $this->createQueryBuilder('a');
         $query->select('a as album, COUNT(i) as c');
         $query->innerJoin('a.images', 'i');

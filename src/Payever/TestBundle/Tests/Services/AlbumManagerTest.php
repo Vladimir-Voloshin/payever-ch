@@ -84,7 +84,7 @@ class AlbumManagerTest extends WebTestCase
      */
     public function testGetAlbumImages($albumId = 1, $page = 1)
     {
-        for($i = 1; 25 >= $i; $i++){
+        for($i = 1; 25 >= $i; $i++) {
             // First, mock the object to be used in the test
             $image = $this->createMock(Image::class);
             $images[] = $image;

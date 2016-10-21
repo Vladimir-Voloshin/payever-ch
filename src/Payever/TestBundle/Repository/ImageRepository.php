@@ -16,7 +16,8 @@ class ImageRepository extends \Doctrine\ORM\EntityRepository
      * @param integer $albumId
      * @return \Payever\TestBundle\Entity\Image[]
      */
-    public function getAlbumImagesQuery($albumId) {
+    public function getAlbumImagesQuery($albumId)
+    {
         $query = $this->createQueryBuilder('i');
         $query->where('i.album = :album');
         $query->setParameter('album', $albumId);
